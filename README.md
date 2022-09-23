@@ -30,4 +30,5 @@ for ($num = 1; $num -le 10; $num++)
 ===============================================
 
 ``#count Event Log in the system``
+
 ``(Get-WinEvent -FilterHashTable @{LogName="Application";id=9001}).count``
