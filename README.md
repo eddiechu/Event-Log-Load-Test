@@ -5,7 +5,7 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 You may need the PowerShell code below to simulate and verify it
 
 ```
-#create log source name
+#create event source
 New-EventLog -LogName 'Security' -Source 'loadtest' -ErrorAction Stop
 
 #prepare long content
@@ -26,6 +26,9 @@ for ($num = 1; $num -le 10000; $num++)
   $logmessage = "$num - $logcontent part1 `n $logcontent part2 `n $logcontent part3"
   Write-EventLog -LogName Security -Source loadtest -Message $logmessage -EventId 9001 -RawData $logjsonBytes
 }
+
+#delete event source
+[System.Diagnostics.EventLog]::DeleteEventSource("loadtest")
 ```
 
 ```
