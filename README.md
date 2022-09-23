@@ -9,12 +9,12 @@ You may need the PowerShell code below to simulate and verify it
 New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 
 #prepare long content
-1..100 | Foreach-Object {
+1..1000 | Foreach-Object {
 	$logcontent += "long message "
 }
 
 #generate Event Log
-for ($num = 1; $num -le 10; $num++)
+for ($num = 1; $num -le 10000; $num++)
 {
   $logjson = [PSCustomObject]@{
     LoadTestString = "$logcontent part4"
