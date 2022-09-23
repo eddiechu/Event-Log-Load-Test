@@ -12,7 +12,9 @@ You may need the PowerShell code below to simulate and verify it
 ''#prepare long content``
 
 ``1..100 | Foreach-Object {``
-  ``$logcontent += "long message "``
+
+``  $logcontent += "long message "``
+  
 ``}``
 
 #generate Event Log
