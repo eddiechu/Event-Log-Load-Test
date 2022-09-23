@@ -3,7 +3,7 @@
 When incident happen, huge Event Log generated, your SIEM / log collector can catch all of them?
 
 You may need the PowerShell code below to simulate and verify it
-
+"`"
 ===============================================
 ``#create log source name
 New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
