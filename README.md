@@ -5,6 +5,7 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 You may need the PowerShell code below to simulate and verify it
 
 ===============================================
+
 #create log source name
 New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 
@@ -28,5 +29,6 @@ for ($num = 1; $num -le 10; $num++)
 }
 
 ===============================================
+
 #count Event Log in the system
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001}).count
