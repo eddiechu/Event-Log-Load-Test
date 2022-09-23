@@ -6,7 +6,7 @@ You may need the PowerShell code below to simulate and verify it
 
 ```
 #create log source name
-New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
+New-EventLog -LogName 'Security' -Source 'loadtest' -ErrorAction Stop
 
 #prepare long content
 1..1000 | Foreach-Object {
@@ -24,13 +24,13 @@ for ($num = 1; $num -le 10000; $num++)
 
   $logjsonbytes = [System.Text.Encoding]::Unicode.GetBytes($logjson)
   $logmessage = "$num - $logcontent part1 `n $logcontent part2 `n $logcontent part3"
-  Write-EventLog -LogName Application -Source loadtest -Message $logmessage -EventId 9001 -RawData $logjsonBytes
+  Write-EventLog -LogName Security -Source loadtest -Message $logmessage -EventId 9001 -RawData $logjsonBytes
 }
 ```
 
 ```
 #count Event Log in the system
-(Get-WinEvent -FilterHashTable @{LogName="Application";id=9001}).count
+(Get-WinEvent -FilterHashTable @{LogName="Security";id=9001}).count
 ```
 
 
