@@ -15,6 +15,9 @@ New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 	$logcontent += "long message "
 }
 
+#prepare log label
+$loglabel = Get-Date -Format "yyyyMMddHHmm"
+
 #generate Event Log
 for ($num = 1; $num -le 10000; $num++)
 {
@@ -25,7 +28,7 @@ for ($num = 1; $num -le 10000; $num++)
   } | ConvertTo-Json
 
   $logjsonbytes = [System.Text.Encoding]::Unicode.GetBytes($logjson)
-  $logmessage = "$num - $logcontent part1 `n $logcontent part2 `n $logcontent part3"
+  $logmessage = "$num - $loglabel - $logcontent part1 `n $logcontent part2 `n $logcontent part3"
   Write-EventLog -LogName Application -Source loadtest -Message $logmessage -EventId 9001 -RawData $logjsonBytes
 }
 
