@@ -1,4 +1,4 @@
-# Event Log Load Test
+# Windows Event Log Load Test
 
 When incident happen, huge Event Log generated, your SIEM / log collector can catch all of them?
 
