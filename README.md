@@ -4,7 +4,7 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 
 ![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlogloadtest.gif?raw=truehttps://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlogloadtest.gif?raw=true)
 
-You may simulate it in Windows PowerShell (Admin)
+Simulate it in Windows PowerShell (Admin)
 
 ```
 #create event source
