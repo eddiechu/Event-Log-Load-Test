@@ -2,7 +2,7 @@
 
 When incident happen, huge Event Log generated, your SIEM / log collector can catch all of them?
 
-You may need the PowerShell code below to simulate and verify it
+You may simulate it in Windows PowerShell (Admin)
 
 ```
 #create event source
