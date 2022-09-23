@@ -17,13 +17,13 @@ New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 for ($num = 1; $num -le 10; $num++)
 {
   $logjson = [PSCustomObject]@{
-    LoadTestString = "$logcontent part4"
+    LoadTestString = "$logcontent part2"
     LoadTestDate = Get-Date
-    LoadTestArray = "$logcontent part5"
+    LoadTestArray = "$logcontent part3"
   } | ConvertTo-Json
 
   $logjsonbytes = [System.Text.Encoding]::Unicode.GetBytes($logjson)
-  $logmessage = "$num - $logcontent part1 `````n $logcontent part2 `````n $logcontent part3"
+  $logmessage = "$num - $logcontent $logcontent part1"
   Write-EventLog -LogName Application -Source loadtest -Message $logmessage -EventId 9001 -RawData $logjsonBytes
 }``
 
