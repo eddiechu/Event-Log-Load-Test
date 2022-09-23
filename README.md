@@ -7,14 +7,17 @@ You may need the PowerShell code below to simulate and verify it
 ===============================================
 
 #create log source name
+
 New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 
 #prepare long content
+
 1..100 | Foreach-Object {
 	$logcontent += "long message "
 }
 
 #generate Event Log
+
 for ($num = 1; $num -le 10; $num++)
 {
   $logjson = [PSCustomObject]@{
@@ -31,4 +34,5 @@ for ($num = 1; $num -le 10; $num++)
 ===============================================
 
 #count Event Log in the system
+
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001}).count
