@@ -3,15 +3,17 @@
 When incident happen, huge Event Log generated, your SIEM / log collector can catch all of them?
 
 You may need the PowerShell code below to simulate and verify it
-"`"
-===============================================
-``#create log source name
-New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop``
 
-''#prepare long content
-1..100 | Foreach-Object {
-  $logcontent += "long message "
-}
+===============================================
+``#create log source name``
+
+``New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop````
+
+''#prepare long content``
+
+``1..100 | Foreach-Object {``
+  ``$logcontent += "long message "``
+``}``
 
 #generate Event Log
 for ($num = 1; $num -le 10; $num++)
