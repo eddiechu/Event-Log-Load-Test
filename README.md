@@ -6,9 +6,9 @@ You may need the PowerShell code below to simulate and verify it
 "`"
 ===============================================
 ``#create log source name
-New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
+New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop``
 
-#prepare long content
+''#prepare long content
 1..100 | Foreach-Object {
   $logcontent += "long message "
 }
@@ -23,7 +23,7 @@ for ($num = 1; $num -le 10; $num++)
   } | ConvertTo-Json
 
   $logjsonbytes = [System.Text.Encoding]::Unicode.GetBytes($logjson)
-  $logmessage = "$num - $logcontent $logcontent part1"
+  $logmessage = ""$num - $logcontent $logcontent part1""
   Write-EventLog -LogName Application -Source loadtest -Message $logmessage -EventId 9001 -RawData $logjsonBytes
 }``
 
