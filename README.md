@@ -8,7 +8,7 @@ If the log collector read Event Log, it may not able to catch all log when huge 
 
 If the log collector work with EntryWrittenEventHandler, all log can be catched even over Event Log max log size.
 
-You can have a try
+You can try:
 
 ### 1. Load Event Log EntryWrittenEventHandler (in PowerShell) - View all generated Event Log, regardless of max log size
 
