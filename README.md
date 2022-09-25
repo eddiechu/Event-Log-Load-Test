@@ -10,7 +10,7 @@ If the log collector work with EntryWrittenEventHandler, all log can be catched 
 
 You can have a try
 
-### Hook to Event Log entry written event handler
+### Call Event Log entry written event handler (PowerShell)
 
 ```
 $code = @"
@@ -52,7 +52,7 @@ iex "[EntryWritten1.Program]::Main()"
 
 ```
 
-### Generate huge Event Log in Windows PowerShell (Admin)
+### Generate huge Event Log (PowerShell (Admin))
 
 Create Event Source
 ```
