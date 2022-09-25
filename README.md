@@ -6,6 +6,7 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 
 ### Generate huge Event Log in Windows PowerShell (Admin)
 
+Create Event Source
 ```
 #create event source
 New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
@@ -51,7 +52,8 @@ Write-Host "batchlabel=$batchlabel"
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001} | Where-Object{$_.Message -like "*$batchlabel*"}).count
 ```
 
-## Hook to Event Log entry written event (different from readding Event Log)
+### Hook to Event Log entry written event (different from readding Event Log)
+
 ```
 $code = @"
 using System;
@@ -92,7 +94,7 @@ iex "[EntryWritten1.Program]::Main()"
 
 ```
 
-
+Delete Event Source
 ```
 #count Event Log in the system
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001}).count
