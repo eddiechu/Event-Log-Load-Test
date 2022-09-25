@@ -54,7 +54,7 @@ iex "[EntryWritten1.Program]::Main()"
 
 ### 2. Generate huge Event Log (in PowerShell (Admin)), over your Event Log max log size
 
-Create Event Source
+Create test Event Source
 ```
 #create event source
 New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
@@ -103,7 +103,7 @@ Write-Host "batchlabel=$batchlabel"
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001} | Where-Object{$_.Message -like "*$batchlabel*"}).count
 ```
 
-Delete Event Source
+Delete test Event Source
 ```
 #count Event Log in the system
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001}).count
