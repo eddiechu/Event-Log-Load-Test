@@ -108,3 +108,4 @@ Delete Event Source
 ```
 
 
+#security #siem #log #eventlog #windows #collector #logcollector #loadtest #windowseventlog #syslog
