@@ -61,6 +61,7 @@ New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 ```
 
 Generate logs
+You can tune the number of log, ``for ($num = 1; $num -le **2000**; $num++)``
 ```
 #prepare long content
 $logcontent=""
