@@ -4,6 +4,12 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 
 ![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlogloadtest.gif?raw=truehttps://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlogloadtest.gif?raw=true)
 
+If the log collector read Event Log, it may not able to catch all log when huge log generated and over Event Log max size.
+
+If the log collector work with EntryWrittenEventHandler, all log can be catched even over Event Log max size.
+
+You can have a try
+
 ### Generate huge Event Log in Windows PowerShell (Admin)
 
 Create Event Source
