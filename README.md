@@ -6,11 +6,11 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 
 If the log collector read Event Log, it may not able to catch all log when huge log generated and over Event Log max size.
 
-If the log collector work with EntryWrittenEventHandler, all log can be catched even over Event Log max size.
+If the log collector work with EntryWrittenEventHandler, all log can be catched even over Event Log max log size.
 
 You can have a try
 
-### Call Event Log entry written event handler (PowerShell)
+### Load Event Log EntryWrittenEventHandler (PowerShell) - View all generated Event Log, regardless of max log size
 
 ```
 $code = @"
