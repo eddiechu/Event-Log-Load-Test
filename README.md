@@ -107,7 +107,7 @@ Delete Event Source
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001}).count
 ```
 
-### 3. Compare the results among Windows Event Log Viewer, your SIEM received log and EntryWrittenEventHandler
+### 3. Compare the results among Windows Event Log Viewer, your SIEM received log and EntryWrittenEventHandler console
 
 
 
