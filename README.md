@@ -82,7 +82,7 @@ $batchlabel = "batch-"
 $batchlabel += Get-Date -Format "MMddHHmmss"
 
 #generate Event Log
-for ($num = 1; $num -le 2000; $num++)
+for ($num = 1; $num -le **2000**; $num++)
 {
   $sublog = [PSCustomObject]@{
     SublogString = "$logsubcontent part2"
