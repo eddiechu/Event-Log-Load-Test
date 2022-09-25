@@ -52,7 +52,7 @@ Write-Host "batchlabel=$batchlabel"
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001} | Where-Object{$_.Message -like "*$batchlabel*"}).count
 ```
 
-### Hook to Event Log entry written event (different from readding Event Log)
+### Hook to Event Log entry written event handler (different from reading Event Log)
 
 ```
 $code = @"
