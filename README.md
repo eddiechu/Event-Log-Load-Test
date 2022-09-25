@@ -2,7 +2,7 @@
 
 When incident happen, huge Event Log generated, your SIEM / log collector can catch all of them?
 
-![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlog2.gif?raw=true)
+![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlog.gif?raw=true)
 
 If the log collector read Event Log, it may not able to catch all log when huge log generated and over Event Log max size.
 
