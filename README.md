@@ -60,8 +60,9 @@ Create Event Source
 New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 ```
 
+Generate logs
 ```
-#prepare long log content
+#prepare long content
 $logcontent=""
 1..1000 | Foreach-Object {
   $logcontent += "long message "
@@ -78,10 +79,10 @@ $specialcharacter=""
 
 #prepare batch label
 $batchlabel = "batch-"
-$batchlabel += Get-Date -Format "yyyyMMddHHmmss"
+$batchlabel += Get-Date -Format "MMddHHmmss"
 
 #generate Event Log
-for ($num = 1; $num -le 10; $num++)
+for ($num = 1; $num -le 1000; $num++)
 {
   $sublog = [PSCustomObject]@{
     SublogString = "$logsubcontent part2"
