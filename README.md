@@ -10,7 +10,7 @@ If the log collector work with EntryWrittenEventHandler, all log can be catched 
 
 You can try:
 
-### 1. Load Event Log EntryWrittenEventHandler (in PowerShell) - View all generated Event Log, regardless of max log size
+### 1. Load Event Log EntryWrittenEventHandler (in PowerShell) - View all generated Event Log
 
 ```
 $code = @"
@@ -52,7 +52,7 @@ iex "[EntryWritten1.Program]::Main()"
 
 ```
 
-### 2. Generate huge Event Log (in PowerShell (Admin))
+### 2. Generate huge Event Log (in PowerShell (Admin)), over your Event Log max log size
 
 Create Event Source
 ```
@@ -82,7 +82,7 @@ $batchlabel = "batch-"
 $batchlabel += Get-Date -Format "MMddHHmmss"
 
 #generate Event Log
-for ($num = 1; $num -le 1000; $num++)
+for ($num = 1; $num -le 2000; $num++)
 {
   $sublog = [PSCustomObject]@{
     SublogString = "$logsubcontent part2"
