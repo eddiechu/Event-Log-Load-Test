@@ -62,7 +62,7 @@ New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 
 Generate logs
 
-You can tune the number of log, `for ($num = 1; $num -le`**2000**`; $num++)`
+You can adjust the number of log, `$total=1000`
 ```
 #prepare long content
 $logcontent=""
@@ -84,7 +84,8 @@ $batchlabel = "batch-"
 $batchlabel += Get-Date -Format "MMddHHmmss"
 
 #generate Event Log
-for ($num = 1; $num -le 2000; $num++)
+$total=1000
+for ($num = 1; $num -le $total; $num++)
 {
   $sublog = [PSCustomObject]@{
     SublogString = "$logsubcontent part2"
@@ -93,7 +94,7 @@ for ($num = 1; $num -le 2000; $num++)
   } | ConvertTo-Json
 
   $sublogbytes = [System.Text.Encoding]::Unicode.GetBytes($sublog)
-  $logmessage = "$num - $batchlabel - $logcontent $specialcharacter part1"
+  $logmessage = "$num of $total - $batchlabel - $logcontent $specialcharacter part1"
   Write-EventLog -LogName Application -Source "loadtest" –EntryType Information -Message $logmessage -EventId 9001 -RawData $sublogbytes
 }
 
