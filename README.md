@@ -4,9 +4,9 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 
 ![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlog2.gif?raw=true)
 
-If the log collector read Event Log, it may not able to catch all log when huge log generated and over Event Log max log size.
+If the log collector read Event Log, it may not able to catch all log when huge log generated.
 
-If the log collector work with EntryWrittenEventHandler, all log can be catched even over Event Log max log size.
+If the log collector work with EntryWrittenEventHandler, all log can be catched.
 
 You can try:
 
@@ -52,7 +52,7 @@ iex "[EntryWritten1.Program]::Main()"
 
 ```
 
-### 2. Generate huge Event Log (in PowerShell (Admin)), over your Event Log max log size
+### 2. Generate huge Event Log (in PowerShell (Admin))
 
 Create test Event Source
 ```
