@@ -108,7 +108,7 @@ Write-Host "batchlabel = $batchlabel"
 Delete test Event Source
 ```
 #delete event source name
-[System.Diagnostics.EventLog]::Delete("loadtest")
+[System.Diagnostics.EventLog]::DeleteEventSource("loadtest")
 ```
 
 ### 3. Compare the results among Windows Event Log Viewer, your SIEM received log and EntryWrittenEventHandler console
