@@ -2,7 +2,7 @@
 
 When incident happen, huge Event Log generated, your SIEM / log collector can catch all of them?
 
-![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlog2.gif?raw=true)
+![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlog3.gif?raw=true)
 
 If the log collector read Event Log, it may not able to catch all log when huge log generated.
 
@@ -10,7 +10,7 @@ If the log collector work with EntryWrittenEventHandler, all log can be catched.
 
 You can try:
 
-### 1. Load Event Log EntryWrittenEventHandler (in PowerShell) - View all generated Event Log
+### 1. Load Event Log EntryWrittenEventHandler (in PowerShell) - Catch all generated Event Log
 
 ```
 $code = @"
@@ -56,7 +56,7 @@ iex "[EntryWritten1.Program]::Main()"
 
 Create test Event Source
 ```
-#create event source
+#create event source name
 New-EventLog -LogName 'Application' -Source 'loadtest' -ErrorAction Stop
 ```
 
@@ -98,16 +98,16 @@ for ($num = 1; $num -le $total; $num++)
   Write-EventLog -LogName Application -Source "loadtest" –EntryType Information -Message $logmessage -EventId 9001 -RawData $sublogbytes
 }
 
-Write-Host "batchlabel=$batchlabel"
+Write-Host "batchlabel = $batchlabel"
 
-#count Event Log in the system
+#count Event Log stored in Windows
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001} | Where-Object{$_.Message -like "*$batchlabel*"}).count
 ```
 
 Delete test Event Source
 ```
-#count Event Log in the system
-(Get-WinEvent -FilterHashTable @{LogName="Application";id=9001}).count
+#delete event source name
+[System.Diagnostics.EventLog]::Delete("loadtest");
 ```
 
 ### 3. Compare the results among Windows Event Log Viewer, your SIEM received log and EntryWrittenEventHandler console
@@ -115,6 +115,8 @@ Delete test Event Source
 
 
 ###### Remark:
+You can run Syslog server on the same Windows
+
 Syslog server (PowerShell): https://github.com/jamescussen/power-syslog-server
 
 
