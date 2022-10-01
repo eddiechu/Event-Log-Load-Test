@@ -98,6 +98,7 @@ for ($num = 1; $num -le $total; $num++)
   Write-EventLog -LogName Application -Source "loadtest" –EntryType Information -Message $logmessage -EventId 9001 -RawData $sublogbytes
 }
 
+#batchlabel for search
 Write-Host "batchlabel = $batchlabel"
 
 #count Event Log stored in Windows
@@ -107,7 +108,7 @@ Write-Host "batchlabel = $batchlabel"
 Delete test Event Source
 ```
 #delete event source name
-[System.Diagnostics.EventLog]::Delete("loadtest");
+[System.Diagnostics.EventLog]::Delete("loadtest")
 ```
 
 ### 3. Compare the results among Windows Event Log Viewer, your SIEM received log and EntryWrittenEventHandler console
@@ -115,7 +116,7 @@ Delete test Event Source
 
 
 ###### Remark:
-You can run Syslog server on the same Windows
+You can run Syslog server on the same Windows to bypass network factor
 
 Syslog server (PowerShell): https://github.com/jamescussen/power-syslog-server
 
