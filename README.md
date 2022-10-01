@@ -114,5 +114,10 @@ Delete test Event Source
 
 
 
+Remark:
+Syslog server (PowerShell): https://github.com/jamescussen/power-syslog-server
+
+
+
 
 #security #siem #log #eventlog #windows #collector #logcollector #loadtest #windowseventlog #syslog
