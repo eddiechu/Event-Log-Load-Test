@@ -113,12 +113,8 @@ Delete test Event Source
 ### 3. Compare the results among Windows Event Log Viewer, your SIEM received log and EntryWrittenEventHandler console
 
 
-###
-###
-###
-###
-Remark:
 
+###### Remark:
 Syslog server (PowerShell): https://github.com/jamescussen/power-syslog-server
 
 
