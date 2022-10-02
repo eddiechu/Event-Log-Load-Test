@@ -18,14 +18,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
-using System.Threading;
 using System.IO;
-using System.Security.Cryptography;
+using System.Net;
+using System.Net.Sockets;
+using System.Globalization;
+using System.Net.NetworkInformation;
 
 namespace EntryWritten1
 {
+    public static class GlobalVar
+    {
+        public static UdpClient udpClient = new UdpClient(65524);
+        public static int messagecount = 0;
+    }
+	
     public class Program
     {
         public static void Main()
@@ -39,15 +46,51 @@ namespace EntryWritten1
             {
             }
         }
+
         public static void MyOnEntryWritten(Object source, EntryWrittenEventArgs e)
         {
-            Console.WriteLine("Written: " + e.Entry.Message.Substring(0,30) + " ... " + e.Entry.Message.Substring(e.Entry.Message.Length-10));
+            Console.WriteLine("Written: " + e.Entry.Message.Substring(0,42) + " ... " + e.Entry.Message.Substring(e.Entry.Message.Length-22));
+			
+			// send to syslog server, udp or tcp
+			// String syslogserver = "172.16.0.100";
+			// Int32 syslogport = 514;
+			// GlobalVar.messagecount = GlobalVar.messagecount + 1;
+			// SendUDP(e.Entry.Message, syslogserver, syslogport);
+			// SendTCP(e.Entry.Message, syslogserver, syslogport);
         }
+
+		public static void SendUDP(String logmessage, String syslogserver, Int32 syslogport)
+		{
+		    Console.WriteLine("SendUDP to " + syslogserver + " port " + syslogport + " ...");
+			GlobalVar.udpClient.Connect(syslogserver, syslogport);
+			String message="<14>" + DateTime.Now.ToString("MMM d HH:mm:ss") + " " + Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName + " " + "EntryWrittenEventHandler" + " 1 " + logmessage + " " + GlobalVar.messagecount;
+			Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
+			GlobalVar.udpClient.Send(sendBytes, sendBytes.Length);
+			Console.WriteLine(message.Substring(0,20));
+		}
+
+		public static void SendTCP(String logmessage, String syslogserver, Int32 syslogport)
+		{
+		    Console.WriteLine("SendTCP to " + syslogserver + " port " + syslogport + " ...");
+			TcpClient client = new TcpClient(syslogserver, syslogport);
+			String message="<14>" + DateTime.Now.ToString("MMM d HH:mm:ss") + " " + Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName + " " + "EntryWrittenEventHandler" + " 1 " + logmessage + " " + GlobalVar.messagecount;
+			Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
+			NetworkStream stream = client.GetStream();
+			stream.Write(data, 0, data.Length);
+
+			data = new Byte[256];
+			String responseData = String.Empty;
+			Int32 bytes = stream.Read(data, 0, data.Length);
+			responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+
+			stream.Close();
+			client.Close();
+			Console.WriteLine(message.Substring(0,20));
+		}
     }
 }
 "@
-
-Add-Type -TypeDefinition $code -Language CSharp	
+Add-Type -TypeDefinition $code -Language CSharp
 iex "[EntryWritten1.Program]::Main()"
 
 ```
@@ -103,6 +146,7 @@ Write-Host "batchlabel = $batchlabel"
 
 #count Event Log stored in Windows
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001} | Where-Object{$_.Message -like "*$batchlabel*"}).count
+
 ```
 
 Delete test Event Source
