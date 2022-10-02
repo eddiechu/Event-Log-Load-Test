@@ -51,42 +51,42 @@ namespace EntryWritten1
         {
             Console.WriteLine("Written: " + e.Entry.Message.Substring(0,42) + " ... " + e.Entry.Message.Substring(e.Entry.Message.Length-22));
 			
-			// send to syslog server, udp or tcp
-			// String syslogserver = "172.16.0.100";
-			// Int32 syslogport = 514;
-			// GlobalVar.messagecount = GlobalVar.messagecount + 1;
-			// SendUDP(e.Entry.Message, syslogserver, syslogport);
-			// SendTCP(e.Entry.Message, syslogserver, syslogport);
+	    // send to syslog server, udp or tcp
+	    // String syslogserver = "172.16.0.100";
+	    // Int32 syslogport = 514;
+	    // GlobalVar.messagecount = GlobalVar.messagecount + 1;
+	    // SendUDP(e.Entry.Message, syslogserver, syslogport);
+	    // SendTCP(e.Entry.Message, syslogserver, syslogport);
         }
 
-		public static void SendUDP(String logmessage, String syslogserver, Int32 syslogport)
-		{
-		    Console.WriteLine("SendUDP to " + syslogserver + " port " + syslogport + " ...");
-			GlobalVar.udpClient.Connect(syslogserver, syslogport);
-			String message="<14>" + DateTime.Now.ToString("MMM d HH:mm:ss") + " " + Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName + " " + "EntryWrittenEventHandler" + " 1 " + logmessage + " " + GlobalVar.messagecount;
-			Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
-			GlobalVar.udpClient.Send(sendBytes, sendBytes.Length);
-			Console.WriteLine(message.Substring(0,20));
-		}
+	public static void SendUDP(String logmessage, String syslogserver, Int32 syslogport)
+	{
+	    Console.WriteLine("SendUDP to " + syslogserver + " port " + syslogport + " ...");
+	    GlobalVar.udpClient.Connect(syslogserver, syslogport);
+	    String message="<14>" + DateTime.Now.ToString("MMM d HH:mm:ss") + " " + Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName + " " + "EntryWrittenEventHandler" + " 1 " + logmessage + " " + GlobalVar.messagecount;
+	    Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
+	    GlobalVar.udpClient.Send(sendBytes, sendBytes.Length);
+	    Console.WriteLine(message.Substring(0,20));
+	}
 
-		public static void SendTCP(String logmessage, String syslogserver, Int32 syslogport)
-		{
-		    Console.WriteLine("SendTCP to " + syslogserver + " port " + syslogport + " ...");
-			TcpClient client = new TcpClient(syslogserver, syslogport);
-			String message="<14>" + DateTime.Now.ToString("MMM d HH:mm:ss") + " " + Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName + " " + "EntryWrittenEventHandler" + " 1 " + logmessage + " " + GlobalVar.messagecount;
-			Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
-			NetworkStream stream = client.GetStream();
-			stream.Write(data, 0, data.Length);
+	public static void SendTCP(String logmessage, String syslogserver, Int32 syslogport)
+	{
+	    Console.WriteLine("SendTCP to " + syslogserver + " port " + syslogport + " ...");
+	    TcpClient client = new TcpClient(syslogserver, syslogport);
+	    String message="<14>" + DateTime.Now.ToString("MMM d HH:mm:ss") + " " + Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName + " " + "EntryWrittenEventHandler" + " 1 " + logmessage + " " + GlobalVar.messagecount;
+	    Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
+	    NetworkStream stream = client.GetStream();
+	    stream.Write(data, 0, data.Length);
 
-			data = new Byte[256];
-			String responseData = String.Empty;
-			Int32 bytes = stream.Read(data, 0, data.Length);
-			responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+	    data = new Byte[256];
+	    String responseData = String.Empty;
+	    Int32 bytes = stream.Read(data, 0, data.Length);
+	    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
-			stream.Close();
-			client.Close();
-			Console.WriteLine(message.Substring(0,20));
-		}
+	    stream.Close();
+	    client.Close();
+	    Console.WriteLine(message.Substring(0,20));
+	}
     }
 }
 "@
