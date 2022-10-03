@@ -122,6 +122,7 @@ $specialcharacter=""
 #prepare batch label
 $batchlabel = "batch-"
 $batchlabel += Get-Date -Format "MMddHHmmss"
+Write-Host "batchlabel = $batchlabel"
 
 #generate Event Log
 $total=1000
@@ -137,9 +138,6 @@ for ($num = 1; $num -le $total; $num++)
   $logmessage = "$num of $total - $batchlabel - $logcontent $specialcharacter part1"
   Write-EventLog -LogName Application -Source "loadtest" –EntryType Information -Message $logmessage -EventId 9001 -RawData $sublogbytes
 }
-
-#batchlabel for search
-Write-Host "batchlabel = $batchlabel"
 
 #count Event Log stored in Windows
 (Get-WinEvent -FilterHashTable @{LogName="Application";id=9001} | Where-Object{$_.Message -like "*$batchlabel*"}).count
