@@ -8,6 +8,8 @@ If the log collector read Event Log, it may not able to catch all log when huge 
 
 If the log collector work with EntryWrittenEventHandler, all log can be catched.
 
+BTW, UDP network protocal may introduce data loss too when log burst, it is better to use TCP.
+
 How it works:
 
 ### 1. Load Event Log EntryWrittenEventHandler (in PowerShell) - Catch all generated Event Log
