@@ -29,6 +29,7 @@ namespace EntryWritten1
 {
     public static class GlobalVar
     {
+        // UDP client source port
         public static UdpClient udpClient = new UdpClient(65524);
         public static int messagecount = 0;
     }
