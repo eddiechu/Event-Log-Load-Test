@@ -20,6 +20,7 @@ Generate huge log, then compare the results among Windows Event Log Viewer, your
 
 ### 1. Load Event Log EntryWrittenEventHandler console (in PowerShell)
 
+You can simulate UDP or TCP transfer to syslog server, by removing corresponding remark
 ```
 $code = @"
 using System;
@@ -72,6 +73,7 @@ namespace EntryWritten1
 	{
 	    Console.WriteLine("SendUDP to " + syslogserver + " port " + syslogport + " ...");
 	    GlobalVar.udpClient.Connect(syslogserver, syslogport);
+	    // simulate syslog format
 	    String message="<14>" + DateTime.Now.ToString("MMM d HH:mm:ss") + " " + Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName + " " + "EntryWrittenEventHandler" + " 1 " + logmessage + " " + GlobalVar.messagecount;
 	    Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
 	    GlobalVar.udpClient.Send(sendBytes, sendBytes.Length);
@@ -82,6 +84,7 @@ namespace EntryWritten1
 	{
 	    Console.WriteLine("SendTCP to " + syslogserver + " port " + syslogport + " ...");
 	    TcpClient client = new TcpClient(syslogserver, syslogport);
+	    // simulate syslog format
 	    String message="<14>" + DateTime.Now.ToString("MMM d HH:mm:ss") + " " + Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName + " " + "EntryWrittenEventHandler" + " 1 " + logmessage + " " + GlobalVar.messagecount;
 	    Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
 	    NetworkStream stream = client.GetStream();
