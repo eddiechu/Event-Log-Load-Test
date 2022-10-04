@@ -2,13 +2,15 @@
 
 When incident happen, huge Event Log generated, your SIEM / log collector can catch all of them?
 
-![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlog3.gif?raw=true)
+![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlog4.gif?raw=true)
 
-If the log collector read Event Log, it may not able to catch all log when huge log generated.
+There are few factors
 
-If the log collector work with EntryWrittenEventHandler, all log can be catched.
+1. How to collect the Event Log, by GetEventLogs, EntryWrittenEventHandler or others
 
-BTW, UDP network protocal may introduce data loss too when log burst, it is better to use TCP.
+2. By which protocal, UDP or TCP
+
+You can verify it with the PowerShell code below.
 
 How it works:
 
@@ -153,11 +155,6 @@ Delete test Event Source
 ### 3. Compare the results among Windows Event Log Viewer, your SIEM received log and EntryWrittenEventHandler console
 
 
-
-###### Remark:
-You can run Syslog server on the same Windows to bypass network factor
-
-Syslog server (PowerShell): https://github.com/jamescussen/power-syslog-server
 
 
 
