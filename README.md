@@ -6,15 +6,19 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 
 There are few factors
 
-1. How to collect the Event Log, by GetEventLogs, EntryWrittenEventHandler or others
+1. How the agent collect the Event Log, by GetEventLogs, EntryWrittenEventHandler or others
 
-2. By which protocal, UDP or TCP
+2. By which protocol, UDP or TCP, the agent transfer the log to the SIEM
 
 You can verify it with the PowerShell code below.
 
 How it works:
 
-### 1. Load Event Log EntryWrittenEventHandler (in PowerShell) - Catch all generated Event Log
+### Generate huge log, then compare the results among Windows Event Log Viewer, your SIEM and EntryWrittenEventHandler console
+
+
+
+### 1. Load Event Log EntryWrittenEventHandler console (in PowerShell)
 
 ```
 $code = @"
@@ -94,6 +98,8 @@ iex "[EntryWritten1.Program]::Main()"
 
 ```
 
+
+
 ### 2. Generate huge Event Log (in PowerShell (Admin))
 
 Create test Event Source
@@ -151,9 +157,6 @@ Delete test Event Source
 #delete event source name
 [System.Diagnostics.EventLog]::DeleteEventSource("loadtest")
 ```
-
-### 3. Compare the results among Windows Event Log Viewer, your SIEM received log and EntryWrittenEventHandler console
-
 
 
 
