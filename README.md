@@ -6,9 +6,9 @@ When incident happen, huge Event Log generated, your SIEM / log collector can ca
 
 There are few factors
 
-1. How the agent collect the Event Log, by GetEventLogs, EntryWrittenEventHandler or others
+1. How the agent collect the Event Log.
 
-2. By which protocol, UDP or TCP, the agent transfer the log to the SIEM
+2. By which protocol, UDP or TCP, the agent transfer the data to the SIEM.
 
 You can verify it with the PowerShell code below.
 
