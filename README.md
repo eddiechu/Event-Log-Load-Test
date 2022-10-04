@@ -12,9 +12,9 @@ There are few factors
 
 You can verify it with the PowerShell code below.
 
-How it works:
+# How it works:
 
-### Generate huge log, then compare the results among Windows Event Log Viewer, your SIEM and EntryWrittenEventHandler console
+Generate huge log, then compare the results among Windows Event Log Viewer, your SIEM and EntryWrittenEventHandler console
 
 
 
