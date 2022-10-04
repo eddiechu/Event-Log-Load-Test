@@ -1,6 +1,6 @@
 # Windows Event Log Load Test
 
-When incident happen, huge Event Log generated, your SIEM / log collector can catch all of them?
+When incident happens, huge Event Log generated, your SIEM / log collector can catch all of them?
 
 ![alt text](https://github.com/eddiechu/Event-Log-Load-Test/blob/main/eventlog4.gif?raw=true)
 
